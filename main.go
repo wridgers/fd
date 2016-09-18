@@ -165,6 +165,7 @@ func loadIgnorePatterns(p string) {
 	for scanner.Scan() {
 		pattern := scanner.Text()
 		pattern = strings.TrimSpace(pattern)
+		pattern = strings.Replace(pattern, "*", ".*", -1)
 
 		if pattern == "" {
 			continue
@@ -174,7 +175,6 @@ func loadIgnorePatterns(p string) {
 			continue
 		}
 
-		fmt.Printf("adding ignore pattern: %s\n", pattern)
 		addIgnorePattern(pattern)
 	}
 
